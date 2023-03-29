@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+set -e
+set -o pipefail
+set -x
+
+# Parse params
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+echo "-----> Fetching otelcol-sumo installer"
+wget --quiet -O install.sh https://github.com/SumoLogic/sumologic-otel-collector/releases/latest/download/install.sh
+sh install-otelcol-sumo.sh --skip-systemd --skip-installation-token --yes
+
+cp /usr/local/bin/otelcol-sumo "$BUILD_DIR/bin/otelcol-sumo"
+
+# Install the runner
+echo "-----> Installing otelcol-sumo runner"
+mkdir -p "$BUILD_DIR/.profile.d"
+cp "$BUILDPACK_DIR/extra/start-otelcol-sumo.sh" "$BUILD_DIR/.profile.d/"
+chmod +x "$BUILD_DIR/.profile.d/start-otelcol-sumo.sh"
