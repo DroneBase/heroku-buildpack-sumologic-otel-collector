@@ -12,7 +12,7 @@ ENV_DIR=$3
 
 echo "-----> Fetching otelcol-sumo installer"
 wget --quiet -O install.sh https://github.com/SumoLogic/sumologic-otel-collector/releases/latest/download/install.sh
-sh install.sh --skip-systemd --skip-installation-token --yes
+./install.sh --skip-systemd --skip-installation-token --yes
 
 cp /usr/local/bin/otelcol-sumo "$BUILD_DIR/bin/otelcol-sumo"
 
