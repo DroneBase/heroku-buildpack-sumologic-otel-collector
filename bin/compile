@@ -10,6 +10,8 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
+BUILDPACK_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
+
 echo "-----> Fetching otelcol-sumo"
 wget --quiet -O otelcol-sumo https://github.com/SumoLogic/sumologic-otel-collector/releases/download/v0.74.0-sumo-0/otelcol-sumo-0.74.0-sumo-0-linux_amd64
 chmod +x ./otelcol-sumo
