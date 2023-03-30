@@ -2,7 +2,7 @@
 
 export PATH="$PATH:$HOME/bin"
 
-CONFIG=/app/config/sumologic_collector.yaml
+CONFIG=/app/config/sumologic_collector.yml
 
 if [[ -f "$CONFIG" ]]; then
   bash -c "otelcol-sumo --config  $CONFIG 2>&1 &"

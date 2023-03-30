@@ -10,12 +10,11 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-echo "-----> Fetching otelcol-sumo installer"
-wget --quiet -O install.sh https://github.com/SumoLogic/sumologic-otel-collector/releases/latest/download/install.sh
-chmod +x ./install.sh
-./install.sh --skip-systemd --skip-installation-token --yes
+echo "-----> Fetching otelcol-sumo"
+wget --quiet -O otelcol-sumo https://github.com/SumoLogic/sumologic-otel-collector/releases/download/v0.74.0-sumo-0/otelcol-sumo-0.74.0-sumo-0-linux_amd64
+chmod +x ./otelcol-sumo
 
-cp /usr/local/bin/otelcol-sumo "$BUILD_DIR/bin/otelcol-sumo"
+cp ./otelcol-sumo "$BUILD_DIR/bin/otelcol-sumo"
 
 # Install the runner
 echo "-----> Installing otelcol-sumo runner"
